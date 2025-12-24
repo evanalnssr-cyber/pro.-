@@ -1,0 +1,2312 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة عمر التميمي وإخوانه للإلكترونيات | نخبة التقنية</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* الألوان الأصلية من ملف index.1 */
+            --primary-color: #0A192F; 
+            --accent-color: #D4AF37;
+            --text-gold: #e2c275;
+            --light-text: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(212, 175, 55, 0.2);
+            --transition: all 0.3s ease;
+            --shadow-glow: 0 0 15px rgba(212, 175, 55, 0.1);
+            --dark-bg: #050C16;
+            --success-color: #4CAF50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Alexandria', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            background-image: linear-gradient(rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.95)),
+                              url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- الهيدر --- */
+        header {
+            background-color: rgba(5, 12, 22, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-main-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #D4AF37 0%, #e2c275 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--light-text);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-icon {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            background: rgba(255, 255, 255, 0.05);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative; /* للكاونتر */
+        }
+
+        .header-icon:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        /* عداد السلة */
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        /* حقل البحث */
+        .search-container {
+            display: none; /* مخفي افتراضياً */
+            position: absolute;
+            top: 75px;
+            left: 0;
+            width: 100%;
+            background: var(--dark-bg);
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 999;
+            text-align: center;
+        }
+        .search-input {
+            width: 90%;
+            max-width: 600px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--accent-color);
+            background: var(--card-bg);
+            color: var(--light-text);
+            font-family: 'Alexandria', sans-serif;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        /* --- القائمة الجانبية للموبايل --- */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: var(--dark-bg);
+            border-left: 1px solid var(--border-color);
+            z-index: 2000;
+            transition: 0.4s ease;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+        }
+        .mobile-menu-overlay.active {
+            right: 0;
+        }
+        .mobile-menu-link {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+        .close-menu {
+            align-self: flex-end;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), 
+                        url('https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1200&q=80') center/cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #ccc;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #D4AF37 0%, #e2c275 100%);
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 35px;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* --- الفئات --- */
+        .categories-section {
+            padding: 60px 0;
+            background: transparent; 
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--accent-color);
+        }
+
+        .categories-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-item {
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-icon-box {
+            width: 80px;
+            height: 80px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .category-item:hover .category-icon-box {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-5px);
+        }
+
+        .category-item.active .category-icon-box {
+             background: var(--accent-color);
+             color: var(--primary-color);
+        }
+
+        /* --- المنتجات --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 40px 0;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .product-price {
+            color: var(--text-gold);
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .add-cart-btn {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            margin-top: auto;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* --- صفحة تفاصيل المنتج --- */
+        .product-page-container {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .product-details-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .main-image-container img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .thumbnails-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+        .thumb-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        .thumb-img:hover, .thumb-img.active {
+            opacity: 1;
+            border-color: var(--accent-color);
+        }
+
+        .detail-info h2 {
+            color: var(--accent-color);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .detail-price {
+            font-size: 1.8rem;
+            color: var(--text-gold);
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .detail-description {
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1px solid var(--light-text);
+            color: var(--light-text);
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .back-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            color: #ccc;
+        }
+        .product-table td, .product-table th {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .product-table th {
+            text-align: right;
+            color: var(--accent-color);
+        }
+
+        /* --- أنماط صفحة السلة المدمجة (من sk.html مع تعديل الألوان) --- */
+        .cart-section {
+            padding: 30px 0 60px;
+            display: none; /* مخفي افتراضياً */
+        }
+        
+        .cart-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+
+        .cart-items {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+        }
+
+        .cart-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--accent-color);
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 15px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+        }
+        .cart-item:last-child { border-bottom: none; }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .cart-item-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--light-text);
+        }
+
+        .cart-item-price {
+            color: var(--text-gold);
+            font-weight: 700;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .remove-item {
+            color: #ff4757;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .remove-item:hover { text-decoration: underline; }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            background: transparent;
+            border: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--light-text);
+            transition: var(--transition);
+        }
+        .quantity-btn:hover { background-color: rgba(212, 175, 55, 0.2); }
+
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            border: none;
+            text-align: center;
+            font-size: 1rem;
+            background: transparent;
+            color: var(--light-text);
+        }
+        
+        .quantity-input:focus { outline: none; }
+
+        .cart-item-total {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .item-total-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        /* ملخص الطلب */
+        .order-summary {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--accent-color);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            color: #ccc;
+        }
+
+        .summary-value {
+            font-weight: 500;
+            color: var(--light-text);
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #e2c275 100%);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .empty-cart-icon {
+            font-size: 4rem;
+            color: rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+        }
+        .empty-cart-title {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        /* --- تعديلات الهاتف الذكي --- */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hamburger { display: block; }
+            .header-main-container { padding: 10px 0; }
+            
+            .hero { padding: 60px 15px; }
+            .hero h1 { font-size: 2rem; }
+            
+            .categories-section { padding: 20px 0; }
+            
+            .categories-container {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 10px 5px;
+                gap: 15px;
+                scrollbar-width: none;
+            }
+            .categories-container::-webkit-scrollbar { display: none; }
+
+            .category-item { flex: 0 0 auto; width: 90px; }
+            .category-icon-box { width: 60px; height: 60px; font-size: 1.5rem; }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 20px 10px;
+            }
+
+            .product-info { padding: 12px; }
+            .product-title { font-size: 0.85rem; height: 2.4em; overflow: hidden; }
+            .product-price { font-size: 1rem; }
+            .product-image { height: 140px; }
+            .add-cart-btn { padding: 8px; font-size: 0.8rem; }
+            
+            .product-details-layout { grid-template-columns: 1fr; }
+            .search-input { width: 95%; }
+
+            /* تعديلات السلة للموبايل */
+            .cart-container { grid-template-columns: 1fr; }
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                grid-template-rows: auto auto;
+                gap: 10px;
+            }
+            .cart-item-image {
+                width: 80px; height: 80px;
+                grid-row: 1 / 3; align-self: center;
+            }
+            .cart-item-details { grid-column: 2; grid-row: 1; }
+            .cart-item-actions {
+                grid-column: 2; grid-row: 2;
+                justify-content: space-between; width: 100%;
+            }
+            .cart-item-total {
+                grid-column: 1 / 3; grid-row: 3;
+                flex-direction: row; align-items: center;
+                justify-content: space-between; margin-top: 10px;
+                padding-top: 10px; border-top: 1px dashed var(--border-color);
+            }
+            .order-summary { position: static; }
+        }
+
+        /* فوتر متناسق */
+        footer {
+            background-color: var(--dark-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #8892b0; transition: var(--transition); }
+        .footer-links a:hover { color: var(--accent-color); padding-right: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-main-container">
+            <a href="#" class="logo" onclick="showSection('home')">
+                <div class="logo-icon"><i class="fas fa-microchip"></i></div>
+                <div class="logo-text">التميمي</div>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="#" onclick="showSection('home')">الرئيسية</a>
+                <a href="#products-section" onclick="showSection('home'); setTimeout(()=>{document.getElementById('products-section').scrollIntoView({behavior:'smooth'})}, 100)">المتجر</a>
+                <a href="#">العروض</a>
+                <a href="#">عن الشركة</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="header-icon" id="search-btn"><i class="fas fa-search"></i></div>
+                <div class="header-icon" id="cart-btn" onclick="showSection('cart')">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="header-icon"><i class="fas fa-user"></i></div>
+                <div class="hamburger"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+        
+        <div class="search-container" id="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="ابحث عن اسم المنتج (مثال: آيفون، سوني)...">
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <div class="close-menu"><i class="fas fa-times"></i></div>
+        <a href="#" class="mobile-menu-link" onclick="showSection('home'); toggleMenu();">الرئيسية</a>
+        <a href="#products-section" class="mobile-menu-link" onclick="showSection('home'); toggleMenu();">الأقسام والمنتجات</a>
+        <a href="#" class="mobile-menu-link" onclick="showSection('cart'); toggleMenu();">سلة التسوق</a>
+        <a href="#" class="mobile-menu-link">سياسة الإرجاع</a>
+        <a href="#" class="mobile-menu-link">تواصل معنا</a>
+    </div>
+
+    <div id="main-content">
+        <section class="hero">
+            <div class="container">
+                <h1>عالم من الابتكار الرقمي</h1>
+                <p>نحن نوفر لك أحدث الأجهزة الإلكترونية بمعايير عالمية وضمان حقيقي، لنرتقي بتجربتك التقنية إلى مستوى النخبة.</p>
+                <button class="btn-primary" onclick="document.getElementById('products-section').scrollIntoView({behavior:'smooth'})">اكتشف المجموعة</button>
+            </div>
+        </section>
+
+        <section class="categories-section">
+            <div class="container">
+                <h2 class="section-title">تسوق حسب الفئة</h2>
+                <div class="categories-container" id="categories-container">
+                    </div>
+            </div>
+        </section>
+
+        <main class="container" id="products-section">
+            <h2 class="section-title" style="margin-top: 40px;">أحدث المنتجات</h2>
+            <div class="products-grid" id="products-grid">
+                </div>
+        </main>
+    </div>
+
+    <div class="container product-page-container" id="product-detail-view">
+        <button class="back-btn" onclick="backToMain()">← العودة للمنتجات</button>
+        <div class="product-details-layout" id="product-details-content">
+            </div>
+    </div>
+
+    <div class="container cart-section" id="cart-page-view">
+        <button class="back-btn" onclick="backToMain()">← العودة للمنتجات</button>
+        <div class="cart-container">
+            <div class="cart-items">
+                <h2 class="cart-title">سلة التسوق (<span id="cart-items-count">0</span> منتجات)</h2>
+                
+                <div id="cart-items-container">
+                    </div>
+            </div>
+            
+            <div class="order-summary">
+                <h2 class="summary-title">ملخص الطلب</h2>
+                <div class="summary-row">
+                    <span class="summary-label">المجموع الجزئي</span>
+                    <span class="summary-value" id="subtotal">0 ريال</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">الضريبة (15%)</span>
+                    <span class="summary-value" id="tax">0 ريال</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">تكلفة الشحن</span>
+                    <span class="summary-value" id="shipping">مجاناً</span>
+                </div>
+                <div class="summary-total">
+                    <span>المجموع الكلي</span>
+                    <span class="total-price" id="total">0 ريال</span>
+                </div>
+<button class="checkout-btn" onclick="goToCheckout()">إتمام الشراء</button>
+                <div style="text-align:center; margin-top:15px; color:#888; font-size:0.9rem;">
+                    آمن وموثوق 100%
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo-text" style="margin-bottom: 15px;">التميمي</div>
+                    <p style="color: #8892b0;">نحن شريكك الموثوق في عالم الإلكترونيات، نوفر لك الأفضل دائماً.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>تواصل معنا</h4>
+                    <p style="color: #8892b0;">المملكة العربية السعودية، الرياض</p>
+                    <p style="color: #8892b0;">هاتف: 920000000</p>
+                    <div style="margin-top: 15px; font-size: 1.5rem; color: var(--accent-color);">
+                        <i class="fab fa-instagram" style="margin-left: 15px; cursor: pointer;"></i>
+                        <i class="fab fa-twitter" style="cursor: pointer;"></i>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 20px; color: #555; font-size: 0.8rem;">
+                جميع الحقوق محفوظة © شركة عمر التميمي وإخوانه 2025
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- البيانات (Data) ---
+        const products = [
+            {
+    id: 1,
+    name: "ماك بوك برو M3 ماكس (16 بوصة)",
+    brand: "Apple",
+    price: "5,280 ريال",
+    category: "لابتوبات",
+    image: "https://iservicejo.com/wp-content/uploads/2025/10/MacBook_Pro_16-inch_M4_Pro_or_Max_chip_Silver_PDP_Image_Position_1__en-ME.jpg-2048x2048-2-600x600.png",
+    images: [
+      "https://iservicejo.com/wp-content/uploads/2025/10/MacBook_Pro_16-inch_M4_Pro_or_Max_chip_Silver_PDP_Image_Position_1__en-ME.jpg-2048x2048-2-600x600.png",
+      "https://iservicejo.com/wp-content/uploads/2025/10/MacBook_Pro_16-inch_M4_Pro_or_Max_chip_Silver_PDP_Image_Position_2__en-ME.jpg-2048x2048-2-600x600.png",
+      "https://iservicejo.com/wp-content/uploads/2025/10/MacBook_Pro_16-inch_M4_Pro_or_Max_chip_Silver_PDP_Image_Position_7__en-ME.jpg-2048x2048-2-600x600.png",
+      "https://iservicejo.com/wp-content/uploads/2025/10/MacBook_Pro_16-inch_M4_Pro_or_Max_chip_Silver_PDP_Image_Position_8__en-ME.jpg-2048x2048-2-600x600.png"
+    ],
+    colors: ["أسود فلكي (Space Black)", "فضي (Silver)"],
+    description: "الوحش الكاسر من أبل بشريحة M3 Max الأقوى، مصمم للمبرمجين والمصممين المحترفين مع عمر بطارية استثنائي.",
+    details: {
+      "المعالج": "Apple M3 Max (16-core CPU, 40-core GPU)",
+      "الرام": "48GB Unified Memory",
+      "التخزين": "1TB SSD Gen4",
+      "الشاشة": "16.2 inch Liquid Retina XDR, 120Hz ProMotion",
+      "البطارية": "تدوم حتى 22 ساعة",
+      "المنافذ": "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
+      "الوزن": "2.16 كجم",
+      "نظام التشغيل": "macOS Sonoma"
+    }
+  },
+  {
+    id: 2,
+    name: " ذهبي - آيفون 16 برو ماكس",
+    brand: "Apple",
+    price: "5,299 ريال",
+    category: "جوالات",
+    image: "https://i.imgur.com/aHrTx08.jpeg",
+    images: [
+      "https://iservicejo.com/wp-content/uploads/2025/10/ABJ1501ST0351-1-600x581.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/10/ABJ1501ST0351-2-600x538.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/10/ABJ1501ST0351-3.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/10/ABJ1501ST0351-4.webp",
+      ""
+    ],
+    colors: ["تيتانيوم طبيعي", "تيتانيوم أزرق", "تيتانيوم أبيض", "تيتانيوم أسود"],
+    description: "أول آيفون مصنوع من التيتانيوم الفضائي، مع زر الإجراءات الجديد ومنفذ USB-C وأقوى نظام كاميرات.",
+    details: {
+      "المعالج": "A17 Pro (3nm)",
+      "الشاشة": "6.7 inch Super Retina XDR OLED, 120Hz",
+      "التخزين": "256GB / 512GB / 1TB",
+      "الكاميرا الخلفية": "48MP + 12MP (5x Zoom) + 12MP Ultra Wide",
+      "مادة التصنيع": "تيتانيوم وزجاج غير لامع",
+      "مقاومة الماء": "IP68",
+      "منفذ الشحن": "USB-C 3.0"
+    }
+  },
+  {
+    id: 3,
+    name: "آيفون 13 - اسود",
+    brand: "Apple",
+    price: "1,699 ريال",
+    category: "جوالات",
+    image: "https://i.imgur.com/kO4Y9Ak.jpeg",
+    images: [
+      "https://action-jo-v2.action.jo/cdn-cgi/image/w=1000,h=1000,f=webp,q=100,fit=contain/https://action-v2-backend.b-cdn.net/32267/MW0GOSDvr4L236CZSU2afquIPvF4aND9mIHhWbjX.png",
+      "https://action-jo-v2.action.jo/cdn-cgi/image/w=1000,h=1000,f=webp,q=100,fit=contain/https://action-v2-backend.b-cdn.net/32268/HLL50xpAXbGVHu3PN6ZtMbSnrB6QNA5v3sNVOcN3.png",
+      "https://action-jo-v2.action.jo/cdn-cgi/image/w=1000,h=1000,f=webp,q=100,fit=contain/https://action-v2-backend.b-cdn.net/32269/Gm5qflvQVA1624FhFUIzf7AvlXNz49gZmYq9zxqT.png",
+      "https://action-jo-v2.action.jo/cdn-cgi/image/w=1000,h=1000,f=webp,q=100,fit=contain/https://action-v2-backend.b-cdn.net/32270/WO0Bppp9thf6w45226bDwzWl5891BOBoXvpLWCRg.png"
+    ],
+    colors: ["سماء الليل (Midnight)", "ضوء النجوم (Starlight)", "أزرق", "وردي", "أحمر"],
+    description: "الجهاز الأكثر توازناً، يجمع بين الأداء القوي لشريحة A15 والسعر المناسب مع كاميرات سينمائية.",
+    details: {
+      "المعالج": "A15 Bionic",
+      "الشاشة": "6.1 inch Super Retina XDR OLED",
+      "التخزين": "128GB / 256GB",
+      "الرام": "4GB",
+      "الكاميرا": "نظام كاميرا مزدوج 12MP",
+      "البطارية": "3240 mAh"
+    }
+  },
+  {
+    id: 4,
+    name: "آيفون 11 - ابيض",
+    brand: "Apple",
+    price: "1,299 ريال",
+    category: "جوالات",
+    image: "https://i.imgur.com/BwSA2RG.jpeg",
+    images: [
+      "https://i.ebayimg.com/images/g/OeAAAeSwN2RpJBog/s-l960.webp",
+      "https://i.ebayimg.com/images/g/3VwAAeSwCYNpJBof/s-l960.webp"
+    ],
+    colors: ["أسود", "أخضر", "أصفر", "أرجواني", "أحمر", "أبيض"],
+    description: "الخيار الاقتصادي المفضل، لا يزال يقدم أداءً جيداً للمهام اليومية والتصوير.",
+    details: {
+      "المعالج": "A13 Bionic",
+      "الشاشة": "6.1 inch Liquid Retina IPS LCD",
+      "التخزين": "64GB / 128GB",
+      "الكاميرا": "كاميرا مزدوجة 12MP مع الوضع الليلي",
+      "الشبكة": "4G LTE",
+      "البصمة": "Face ID"
+    }
+  },
+  {
+    id: 5,
+    name: "آيباد برو M4 (الجديد)",
+    brand: "Apple",
+    price: "4,649 ريال",
+    category: "جوالات",
+    image: "https://i.imgur.com/03yQHFD.jpeg",
+    images: [
+      "https://isystem.jo/wp-content/uploads/ipad-1-800x800.jpg",
+      "https://isystem.jo/wp-content/uploads/iPad_Pro_13_M4_Cellular_Space_Black_PDP_Image_Position_4__ar-ME-scaled-2-800x800.jpg",
+      "https://isystem.jo/wp-content/uploads/iPad_Pro_13_M4_Cellular_Space_Black_PDP_Image_Position_6__ar-ME-scaled-2-800x800.jpg",
+      "https://isystem.jo/wp-content/uploads/iPad_Pro_13_M4_Cellular_Space_Black_PDP_Image_Position_7__ar-ME-scaled-2-800x800.jpg",
+      "https://isystem.jo/wp-content/uploads/iPad_Pro_13_M4_Cellular_Space_Black_PDP_Image_Position_9__ar-ME-scaled-2-800x800.jpg"
+    ],
+    colors: ["فضي", "أسود فلكي"],
+    description: "أنحف منتج من أبل على الإطلاق، مع شاشة Tandem OLED الخارقة وشريحة M4 للذكاء الاصطناعي.",
+    details: {
+      "المعالج": "Apple M4 (9-core CPU)",
+      "الشاشة": "13 inch Ultra Retina XDR OLED",
+      "الرام": "8GB / 16GB",
+      "السُمك": "5.1 ملم فقط",
+      "التوافق": "Apple Pencil Pro",
+      "الكاميرا": "12MP Wide 4K video"
+    }
+  },
+  {
+    id: 6,
+    name: "سامسونج جالكسي S24 ألترا",
+    brand: "Samsung",
+    price: "4,999 ريال",
+    category: "جوالات",
+    image: "https://i.imgur.com/qgM2Kpr.jpeg",
+    images: [
+      "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/2501/gallery/levant-ar-galaxy-s25-s938-534617-sm-s938bzbimea-544744242?imbypass=true",
+      "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/2501/gallery/levant-ar-galaxy-s25-s938-534617-sm-s938bzbimea-544744220?imbypass=true",
+      "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/2501/gallery/levant-ar-galaxy-s25-s938-534617-sm-s938bzbimea-544744223?imbypass=true"
+    ],
+    colors: ["تيتانيوم رمادي", "تيتانيوم أسود", "تيتانيوم بنفسجي", "تيتانيوم أصفر"],
+    description: "هاتف الذكاء الاصطناعي الأول، مع ميزات Galaxy AI، إطار تيتانيوم، وقلم S-Pen مدمج.",
+    details: {
+      "المعالج": "Snapdragon 8 Gen 3 for Galaxy",
+      "الشاشة": "6.8 inch Dynamic LTPO AMOLED 2X, 120Hz",
+      "الرام": "12GB",
+      "التخزين": "256GB / 512GB / 1TB",
+      "الكاميرا": "200MP Main + 50MP Periscope Zoom",
+      "البطارية": "5000 mAh (45W Wired Charging)",
+      "ميزات خاصة": "دعم كامل للذكاء الاصطناعي، قلم S-Pen"
+    }
+  },
+  {
+    id: 7,
+    name: "سامسونج جالكسي Tab S9 Ultra",
+    brand: "Samsung",
+    price: "6,200 ريال",
+    category: "جوالات",
+    image: "https://i.imgur.com/iOin8CD.jpeg",
+    images: ["https://iservicejo.com/wp-content/uploads/2024/08/SM-X910NZAEMEA_000_0001_1920x.png-1.webp",
+        "https://iservicejo.com/wp-content/uploads/2024/08/SM-X910NZAEMEA_000_0003_1920x.png-1.webp",
+        "https://iservicejo.com/wp-content/uploads/2024/08/SM-X910NZAEMEA_000_0002_1920x.png-1.webp"
+    ],
+    colors: ["بيج", "جرافيت"],
+    description: "تابلت ضخم بشاشة تنافس اللابتوبات، مقاوم للماء والغبار لأول مرة في هذه الفئة.",
+    details: {
+      "المعالج": "Snapdragon 8 Gen 2",
+      "الشاشة": "14.6 inch Dynamic AMOLED 2X",
+      "مقاومة الماء": "IP68 (للجهاز والقلم)",
+      "البطارية": "11200 mAh",
+      "الصوت": "4 سماعات AKG"
+    }
+  },
+  {
+    id: 8,
+    name: "شاومي 14 ألترا",
+    brand: "Xiaomi",
+    price: "3,999 ريال",
+    category: "جوالات",
+    image: "https://i.imgur.com/jgBHpDp.jpeg",
+    images: ["https://i.ebayimg.com/images/g/A7oAAOSwaNlngknP/s-l960.webp",
+        "https://i.ebayimg.com/images/g/74oAAOSwNSRngknQ/s-l960.webp",
+        "https://i.ebayimg.com/images/g/P8UAAOSwWYZngknS/s-l960.webp",
+        "https://i.ebayimg.com/images/g/iZ4AAOSwxhBngknR/s-l960.webp"
+    ],
+    colors: ["أسود", "أبيض", "أزرق سيراميك"],
+    description: "أسطورة التصوير بالتعاون مع Leica، مستشعر 1 بوصة كامل وكاميرات احترافية.",
+    details: {
+      "المعالج": "Snapdragon 8 Gen 3",
+      "الشاشة": "6.73 inch LTPO AMOLED, 120Hz, 3000 nits",
+      "الرام": "16GB",
+      "الكاميرا": "نظام رباعي 50MP (عدسات Leica Summilux)",
+      "البطارية": "5000 mAh",
+      "الشحن": "90W سلكي + 80W لاسلكي"
+    }
+  },
+  {
+    id: 9,
+    name: "أسوس ROG Strix G16",
+    brand: "Asus",
+    price: "7,899 ريال",
+    category: "لابتوبات",
+    image: "https://i.imgur.com/gBj1yNf.jpeg",
+    images: [
+      "https://jo-cell.com/cdn/shop/files/hba5xwx0x01_deae795c-6f66-4514-88a6-f9c12f7e0d88_1024x-1200x1200.jpg?v=1751884954&width=1200",
+      "https://jo-cell.com/cdn/shop/files/g614_gray_4-1200x1200.jpg?v=1751884957&width=1200",
+      "https://jo-cell.com/cdn/shop/files/3-3-1200x1200.jpg?v=1751884956&width=1200",
+      "https://jo-cell.com/cdn/shop/files/g614_gray_6-1200x1200.jpg?v=1751884969&width=1200"
+    ],
+    colors: ["رمادي (Eclipse Gray)", "أخضر (Volt Green)"],
+    description: "وحش الألعاب من أسوس، مزود بأحدث كروت شاشة إنفيديا RTX 40 لتشغيل أثقل الألعاب.",
+    details: {
+      "المعالج": "Intel Core i9-13980HX",
+      "كرت الشاشة": "NVIDIA GeForce RTX 4070 8GB",
+      "الرام": "16GB DDR5 (قابلة للترقية)",
+      "التخزين": "1TB PCIe 4.0 NVMe",
+      "الشاشة": "16 inch FHD+ 165Hz",
+      "نظام التبريد": "تقنية ROG Intelligent Cooling مع معدن سائل"
+    }
+  },
+  {
+    id: 10,
+    name: "ديل XPS 13 بلس",
+    brand: "Dell",
+    price: "6,499 ريال",
+    category: "لابتوبات",
+    image: "https://i.imgur.com/ZMFNX5b.jpeg",
+    images: ["https://jo-cell.com/cdn/shop/files/XPS9345-SX12807BLK-PUS-1200x1200.jpg?v=1751875813&width=1200",
+        "https://jo-cell.com/cdn/shop/files/6584127cv14d-1200x1200.jpg?v=1751875815&width=1200",
+        "https://jo-cell.com/cdn/shop/files/6584127cv32d-1200x1200.jpg?v=1751875819&width=1200",
+        "https://jo-cell.com/cdn/shop/files/6584127cv20d-1200x1200.jpg?v=1751875824&width=1200"
+    ],
+    colors: ["بلاتينيوم", "جرافيت"],
+    description: "قمة الأناقة في عالم ويندوز، تصميم مستقبلي مع لوحة لمس مخفية وأزرار تعمل باللمس.",
+    details: {
+      "المعالج": "Intel Core i7-1360P",
+      "الشاشة": "13.4 inch OLED 3.5K Touch",
+      "الرام": "32GB LPDDR5",
+      "التخزين": "1TB SSD",
+      "الوزن": "1.23 كجم",
+      "الميزات": "لوحة مفاتيح Zero-lattice، شريط مهام باللمس"
+    }
+  },
+  {
+    id: 11,
+    name: "لينوفو ليجن برو 7i",
+    brand: "Lenovo",
+    price: "11,200 ريال",
+    category: "لابتوبات",
+    image: "https://i.imgur.com/Ks2efoO.jpeg",
+    images: ["https://www.nasertech.com/cdn/shop/files/6610.jpg?v=1755454174&width=823",
+        "https://www.nasertech.com/cdn/shop/files/6608.jpg?v=1755454174&width=823"
+    ],
+    colors: ["رمادي غامق (Onyx Grey)"],
+    description: "الأفضل في فئته، يجمع بين التصميم المعدني المتين والأداء الحراري الممتاز للألعاب التنافسية.",
+    details: {
+      "المعالج": "Intel Core i9-14900HX",
+      "كرت الشاشة": "NVIDIA GeForce RTX 4080 12GB",
+      "الرام": "32GB DDR5 5600MHz",
+      "الشاشة": "16 inch WQXGA 240Hz, 500 nits",
+      "التخزين": "1TB SSD M.2",
+      "لوحة المفاتيح": "RGB Per-Key Lighting"
+    }
+  },
+  {
+    id: 12,
+    name: "مايكروسوفت سيرفس لابتوب ستوديو 2",
+    brand: "Microsoft",
+    price: "9,999 ريال",
+    category: "لابتوبات",
+    image: "https://i.ebayimg.com/images/g/kwEAAeSwGIBpCViq/s-l960.webp",
+    images: ["https://i.ebayimg.com/images/g/kwEAAeSwGIBpCViq/s-l960.webp",
+        "https://i.ebayimg.com/images/g/kUoAAeSwaDFpCViq/s-l960.webp",
+        "https://i.ebayimg.com/images/g/e4IAAeSwMR5pCViq/s-l960.webp"
+    ],
+    colors: ["بلاتينيوم"],
+    description: "الجهاز المتحول الأقوى للمبدعين، شاشة يمكن سحبها للرسم وتصميم هندسي فريد.",
+    details: {
+      "المعالج": "Intel Core i7-13700H",
+      "كرت الشاشة": "NVIDIA GeForce RTX 4050",
+      "الرام": "64GB",
+      "الشاشة": "14.4 inch PixelSense Flow 120Hz Touch",
+      "الوضعيات": "لابتوب، مسرح، استوديو (للرسم)",
+      "القلم": "يدعم Surface Slim Pen 2"
+    }
+  }, {
+    id: 13,
+    name: "سوني بلايستيشن 5",
+    brand: "Sony",
+    price: "2,599 ريال",
+    category: "كونسول",
+    image: "https://i.imgur.com/fpVBUjI.jpeg",
+    images: [
+      "https://iservicejo.com/wp-content/uploads/2025/05/PS5PRO-Hero-4.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/05/PS5-Digital-Hero-with-disc-drive.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/05/PS5PRO-Hero-4-1.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/05/PS5PRO-Hero-3.webp"
+    ],
+    colors: ["أبيض قياسي", "أسود منتصف الليل (غطاء منفصل)", "أحمر كوني"],
+    description: "الجيل الجديد بتصميم أنحف وأخف وزناً، يدعم دقة 4K وسرعة تحميل خيالية بفضل SSD المخصص.",
+    details: {
+      "المعالج": "AMD Zen 2 (8-core)",
+      "معالج الرسوميات": "RDNA 2 (10.3 TFLOPS)",
+      "التخزين": "1TB Custom SSD",
+      "دقة العرض": "Up to 4K 120Hz / 8K Support",
+      "الذراع": "DualSense مع ردود فعل لمسية",
+      "الصوت": "3D AudioTech"
+    }
+  },
+  {
+    id: 14,
+    name: "نينتندو سويتش أوليد",
+    brand: "Nintendo",
+    price: "1,399 ريال",
+    category: "كونسول",
+    image: "https://i.imgur.com/o2VZ2YL.jpeg",
+    images: ["https://iservicejo.com/wp-content/uploads/2025/05/nintendo-switch2_HP-600x600.webp"
+    ],
+    colors: ["أبيض", "نيون (أحمر/أزرق)", "إصدار زيلدا"],
+    description: "تجربة اللعب المحمول الأفضل مع شاشة OLED غنية بالألوان ومسند خلفي عريض قابل للتعديل.",
+    details: {
+      "الشاشة": "7 inch OLED Touch Screen",
+      "التخزين": "64GB (قابل للتوسعة)",
+      "الوضعيات": "محمول، سطح طاولة، تلفزيون",
+      "الشبكة": "يحتوي منفذ LAN في القاعدة",
+      "البطارية": "4.5 - 9 ساعات حسب اللعبة"
+    }
+  },
+  {
+    id: 15,
+    name: "سامسونج أوديسي G9 نيو",
+    brand: "Samsung",
+    price: "7,499 ريال",
+    category: "شاشات",
+    image: "https://i.imgur.com/YaDq1TG.jpeg",
+    images: ["https://icn.com/_next/image?url=https%3A%2F%2Fmedia.icn.com%2Fmedia%2Fstorage%2Fuploads%2Fall%2F67bc2fc35bc6e.webp&w=828&q=75",
+        "https://icn.com/_next/image?url=https%3A%2F%2Fmedia.icn.com%2Fmedia%2Fstorage%2Fuploads%2Fall%2F67bc2fc4194a6.webp&w=828&q=75",
+        "https://icn.com/_next/image?url=https%3A%2F%2Fmedia.icn.com%2Fmedia%2Fstorage%2Fuploads%2Fall%2F67bc2fc494feb.webp&w=828&q=75",
+        "https://icn.com/_next/image?url=https%3A%2F%2Fmedia.icn.com%2Fmedia%2Fstorage%2Fuploads%2Fall%2F67bc2fc4e40d0.webp&w=828&q=75"
+    ],
+    colors: ["أبيض مع إضاءة خلفية RGB"],
+    description: "شاشة ألعاب منحنية فائقة الاتساع بمقاس 49 بوصة، تعادل شاشتين بجانب بعضهما، مع تقنية Mini-LED.",
+    details: {
+      "المقياس": "49 inch Super Ultra-Wide (32:9)",
+      "الدقة": "DQHD (5120 x 1440)",
+      "معدل التحديث": "240Hz",
+      "الاستجابة": "1ms (GtG)",
+      "التقنية": "Quantum Matrix HDR2000",
+      "الانحناء": "1000R"
+    }
+  },
+  {
+    id: 16,
+    name: "إل جي UltraGear 27GR95QE",
+    brand: "LG",
+    price: "3,899 ريال",
+    category: "شاشات",
+    image: "https://i.imgur.com/JumdXRc.jpeg",
+    images: ["https://m.media-amazon.com/images/I/71JGgBMb-HL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/81qT18zxkAL._AC_SL400_.jpg"
+    ],
+    colors: ["أسود"],
+    description: "أول شاشة ألعاب OLED في العالم بمعدل تحديث 240 هرتز، توفر سواداً مثالياً وألواناً سينمائية.",
+    details: {
+      "المقياس": "27 inch OLED",
+      "الدقة": "QHD (2560 x 1440)",
+      "معدل التحديث": "240Hz",
+      "الاستجابة": "0.03ms (GtG) الأسرع عالمياً",
+      "التدرج اللوني": "DCI-P3 98.5%",
+      "المنافذ": "HDMI 2.1, DisplayPort"
+    }
+  },
+  {
+    id: 17,
+    name: "ساعة أبل ألترا 2",
+    brand: "Apple",
+    price: "3,199 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/9x47MO5.jpeg",
+    images: ["https://isystem.jo/wp-content/uploads/Apple_Watch_Ultra_2_49mm_Natural_Titanium_Alpine_Loop_Tan_PDP_Image_Position_1__en-ME_18c780d0-fb3b-4e75-8b0c-4875b098e432-1-800x800.webp",
+        "https://isystem.jo/wp-content/uploads/Apple_Watch_Ultra_2_49mm_Natural_Titanium_Alpine_Loop_Tan_PDP_Image_Position_2__en-ME_e0c2a7f8-e953-459d-a0af-ecd6bfe539e9-800x800.webp",
+        "https://isystem.jo/wp-content/uploads/Apple_Watch_Ultra_2_49mm_Black_Titanium_Alpine_Loop_Dark_Green_PDP_Image_Position_6__en-ME_c6383f05-63a3-49af-b746-1328ef71a648-800x800.webp",
+        "https://isystem.jo/wp-content/uploads/Apple_Watch_Ultra_2_49mm_Black_Titanium_Alpine_Loop_Dark_Green_PDP_Image_Position_7__en-ME_44e56ace-2898-4d97-bb88-e30d4d8ae038-1-800x800.jpg"
+    ],
+    colors: ["تيتانيوم طبيعي (أساور متعددة الألوان)"],
+    description: "الساعة الأقوى للمغامرين، هيكل تيتانيوم، وشاشة ساطعة جداً تصل لـ 3000 شمعة.",
+    details: {
+      "المعالج": "S9 SiP",
+      "الشاشة": "Always-On Retina (3000 nits)",
+      "البطارية": "تصل 36 ساعة (72 ساعة وضع التوفير)",
+      "مقاومة الماء": "WR100 (غطس لعمق 40 متر)",
+      "الميزات": "إيماءة النقر المزدوج، صفارة إنذار"
+    }
+  },
+  {
+    id: 18,
+    name: "سماعة سوني WH-1000XM5",
+    brand: "Sony",
+    price: "1,299 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/6axxqaE.jpeg",
+    images: ["https://smartbuy-me.com/cdn/shop/files/SON0711ST0016.jpg?v=1722964917&width=800"],
+    colors: ["أسود", "فضي بلاتيني", "أزرق منتصف الليل"],
+    description: "الملكة المتوجة لعزل الضوضاء، خفيفة الوزن ومريحة جداً مع جودة مكالمات محسنة.",
+    details: {
+      "النوع": "Over-Ear Wireless",
+      "العزل": "Active Noise Cancelling (8 ميكروفونات)",
+      "البطارية": "30 ساعة (مع العزل)",
+      "الشحن": "شحن 3 دقائق يعطي 3 ساعات",
+      "الاتصال": "Bluetooth 5.2, Multipoint connection"
+    }
+  },
+  {
+    id: 19,
+    name: "ماوس لوجيتك MX Master 3S",
+    brand: "Logitech",
+    price: "450 ريال",
+    category: "إكسسوارات",
+    image: "https://i.ebayimg.com/thumbs/images/g/yUYAAeSw0gVpOgrC/s-l500.jpg",
+    images: ["https://i.ebayimg.com/thumbs/images/g/yUYAAeSw0gVpOgrC/s-l500.jpg",
+        "https://i.ebayimg.com/images/g/SO8AAeSwN2RpOgrC/s-l960.webp",
+        "https://i.ebayimg.com/images/g/P5oAAeSwaXxpOgrC/s-l960.webp"
+    ],
+    colors: ["جرافيت", "رمادي باهت"],
+    description: "أفضل ماوس للإنتاجية والمصممين، عجلة تمرير مغناطيسية ونقرات هادئة جداً.",
+    details: {
+      "DPI": "8000 DPI (Darkfield)",
+      "الأزرار": "7 أزرار قابلة للتخصيص",
+      "البطارية": "تصل 70 يوماً",
+      "الاتصال": "بلوتوث أو Logi Bolt (3 أجهزة معاً)",
+      "ميزة خاصة": "نسخ ولصق بين أجهزة كمبيوتر مختلفة"
+    }
+  },
+  {
+    id: 20,
+    name: "مكنسة دايسون V15 Detect",
+    brand: "Dyson",
+    price: "8,899 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/VbqbnBv.jpeg",
+    images: ["https://images.samsung.com/is/image/samsung/p6pim/levant_ar/vr7md97714g-eu/gallery/levant-ar-vr9700d-vr7md97714g-eu-544906125?$Q90_1920_1280_F_PNG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/vr7md97714g-eu/gallery/levant-ar-vr9700d-vr7md97714g-eu-544676208?$Q90_2052_1641_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/vr7md97714g-eu/gallery/levant-ar-vr9700d-vr7md97714g-eu-544676159?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/vr7md97714g-eu/gallery/levant-ar-vr9700d-vr7md97714g-eu-544676160?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/vr7md97714g-eu/gallery/levant-ar-vr9700d-vr7md97714g-eu-544676145?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/vr7md97714g-eu/gallery/levant-ar-vr9700d-vr7md97714g-eu-544676148?$Q90_1368_1094_F_JPG$"
+    ],
+    colors: ["أصفر/نيكل"],
+    description: "مكنسة لاسلكية ذكية تكتشف الغبار غير المرئي باستخدام الليزر وتقيس حجم الجسيمات.",
+    details: {
+      "قوة الشفط": "240 AW",
+      "مدة التشغيل": "60 دقيقة",
+      "الشاشة": "LCD تعرض كمية الغبار ونوعها",
+      "الرؤوس": "رأس ليزري للأرضيات الصلبة + رأس للسجاد",
+      "الفلترة": "نظام فلترة كامل للجهاز HEPA"
+    }
+  },
+  {
+    id: 21,
+    name: "قلاية هوائية XXL Smart Sensing",
+    brand: "Philips",
+    price: "1,100 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/YELcbIs.jpeg",
+    images: ["https://mega-hardware.com/cdn/shop/products/1_56eeeab4-96b4-4a1c-9543-cfc084e83775.png?height=720&v=1746169038",
+        "https://mega-hardware.com/cdn/shop/products/1_4fea76d6-c34f-42f4-807f-5d0b28fc20ad.png?height=720&v=1746169038",
+        "https://mega-hardware.com/cdn/shop/files/image.psd_42.png?height=720&v=1746169038",
+        "https://mega-hardware.com/cdn/shop/products/1_66f6cb94-3f32-48f2-9ef3-b3cd0046eacb.png?height=720&v=1746169038",
+        "https://mega-hardware.com/cdn/shop/products/1_e177d081-7ae9-4c9d-9ff6-5b77599b25fe.png?v=1746169039"
+    ],
+    colors: ["أسود مع نحاسي"],
+    description: "المقلاة الهوائية الأذكى، تضبط الوقت والحرارة تلقائياً لضمان نضج الطعام المثالي.",
+    details: {
+      "السعة": "1.4 كجم (تكفي دجاجة كاملة)",
+      "التقنية": "Fat Removal (فصل الدهون)",
+      "البرامج": "5 برامج شيف ذكية",
+      "التنظيف": "قطع قابلة للغسل في غسالة الصحون",
+      "الطاقة": "2225 واط"
+    }
+  },
+  {
+    id: 22,
+    name: "جوجل نيست هب (الجيل الثاني)",
+    brand: "Google",
+    price: "399 ريال",
+    category: "ذكاء اصطناعي",
+    image: "https://i.imgur.com/idwOIR6.jpeg",
+    images: ["https://www.nasertech.com/cdn/shop/files/OIP-30.jpg?v=1746300950&width=823"],
+    colors: ["طباشيري", "فحمي"],
+    description: "مركز التحكم في منزلك الذكي مع شاشة، يحلل نومك بالرادار ويدعم مساعد جوجل.",
+    details: {
+      "الشاشة": "7 inch Touchscreen",
+      "الصوت": "مكبر صوت كامل النطاق",
+      "المستشعرات": "Soli sensor (لتتبع النوم والإيماءات)",
+      "الاتصال": "Wi-Fi, Bluetooth, Thread",
+      "الميزات": "إطار صور رقمي، تحكم بالإضاءة"
+    }
+  }, {
+    id: 23,
+    name: "آيفون 17 برو ماكس ",
+    brand: "Apple",
+    price: "6,800 ريال",
+    category: "جوالات",
+    image: "https://i.imgur.com/21KLwNq.jpeg",
+    images: [
+      "https://iservicejo.com/wp-content/uploads/2025/09/apple-iphone-17-pro-max-256gb-back-3-600x849.png",
+      "https://iservicejo.com/wp-content/uploads/2025/09/apple-iphone-17-pro-max-256gb-cosmic-orange-600x849.png",
+      "https://iservicejo.com/wp-content/uploads/2025/09/ABJ1401ST0058-3-600x600.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/09/ABJ1401ST0058-4-600x600.webp"
+    ],
+    colors: ["تيتانيوم صحراوي", "أحمر قرمزي داكن", "أسود عميق"],
+    description: "الجهاز المستقبلي من أبل، بشاشة كاملة دون نتوء (الكاميرا تحت الشاشة) وهيكل من التيتانيوم المصقول.",
+    details: {
+      "المعالج": "A19 Pro (2nm)",
+      "الشاشة": "6.9 inch Real Full Screen 144Hz",
+      "التخزين": "2TB NVMe",
+      "الكاميرا": "نظام خماسي العدسات بدقة 64MP",
+      "البطارية": "بطارية الحالة الصلبة (تدوم يومين)",
+      "ميزة حصرية": "Face ID مخفي تحت الشاشة تماماً"
+    }
+  },
+  {
+    id: 24,
+    name: "نظارة أبل فيجن برو (Apple Vision Pro)",
+    brand: "Apple",
+    price: "16,500 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/2lR6sxb.jpeg",
+    images: [
+      "https://iservicejo.com/wp-content/uploads/2025/03/61mpOk4jguL-600x600.jpg",
+      "https://iservicejo.com/wp-content/uploads/2025/03/download-2-600x324.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/03/download-3-1-600x324.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/03/download-4-1-600x324.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/03/68e2e184f1d28.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/03/68e2e18687395.webp"
+    ],
+    colors: ["فضية مع زجاج ثلاثي الأبعاد"],
+    description: "كمبيوتر مكاني يدمج المحتوى الرقمي مع العالم الحقيقي بسلاسة مذهلة، تحكم بالعين واليد.",
+    details: {
+      "المعالج": "M2 + R1 Chip",
+      "الشاشة": "Micro-OLED (23 مليون بكسل)",
+      "التحكم": "تتبع دقيق للعين واليد والصوت",
+      "النظام": "visionOS",
+      "الصوت": "Spatial Audio (صوت مكاني)"
+    }
+  },
+  {
+    id: 25,
+    name: "سماعة ديفياليت فانتوم 1 (Devialet Phantom I)",
+    brand: "Devialet",
+    price: "1,900 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/O5wOmVl.jpeg",
+    images: [
+      "https://iservicejo.com/wp-content/uploads/2025/12/4-1-3.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/12/7-1-1.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/12/9-1.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/12/6-1-2.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/12/11-1-1.webp",
+      "https://iservicejo.com/wp-content/uploads/2025/12/JBL_Tour_Pro_2_Accessories_Champagne.webp"
+    ],
+    colors: ["أبيض وذهب عيار 22", "أسود غير لامع"],
+    description: "أفخم سماعة بلوتوث في العالم، مطلية بذهب عيار 22 قيراط، تقدم صوتاً يهز المشاعر بقوة 1100 واط.",
+    details: {
+      "القوة": "1100 Watts RMS",
+      "مستوى الصوت": "108 dB SPL",
+      "التردد": "14Hz – 27kHz",
+      "الاتصال": "Wi-Fi, Bluetooth, AirPlay 2, Spotify Connect",
+      "الوزن": "11.4 كجم"
+    }
+  },
+  {
+    id: 27,
+    name: "سماعة بانغ آند أولفسن Beoplay H95",
+    brand: "Bang & Olufsen",
+    price: "3,200 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/yJpbLic.jpeg",
+    images: [
+        "https://iservicejo.com/wp-content/uploads/2025/11/airpods-max-select-202409-midnight_FV1-600x563.jpg",
+        "https://iservicejo.com/wp-content/uploads/2025/11/bento_2_airpod_max_midnight__c4h88dvygxkm_xlarge_2x-1536x1369.jpg",
+        "https://iservicejo.com/wp-content/uploads/2025/11/bento_3_airpod_max_midnight__csvor4qqjyi6_xlarge_2x-1536x1369.jpg",
+        "https://iservicejo.com/wp-content/uploads/2025/11/bento_4_airpod_max_midnight__d38igje6phm6_xlarge_2x-1536x1369.jpg",
+        "https://iservicejo.com/wp-content/uploads/2025/11/airpod-max-202409-gallery-5-1536x1322.jpg"
+    ],
+    colors: ["ذهبي", "أسود", "كحلي"],
+    description: "القمة في عالم الصوتيات. وسائد من جلد الحمل الطبيعي وأقراص تحكم ميكانيكية دقيقة.",
+    details: {
+      "المواد": "ألمنيوم، تيتانيوم، جلد الحمل، جلد البقر",
+      "العزل": "Adaptive Active Noise Cancellation",
+      "البطارية": "38 ساعة مع العزل",
+      "الصوت": "مشغلات تيتانيوم مخصصة",
+      "العلبة": "حقيبة صلبة من الألمنيوم"
+    }
+  },
+  {
+    id: 28,
+    name: "حقيبة ريموفا للأيفون (Rimowa Aluminum)",
+    brand: "Rimowa",
+    price: "650 ريال",
+    category: "إكسسوارات",
+    image: "https://www.apple.com/newsroom/images/2025/11/introducing-iphone-pocket-a-beautiful-and-wearable-carrier-for-iphone/article/Apple-iPhone-Pocket-and-ISSEY-MIYAKE-long-strap-colors_big.jpg.large.jpg",
+    images: ["https://www.apple.com/newsroom/images/2025/11/introducing-iphone-pocket-a-beautiful-and-wearable-carrier-for-iphone/article/Apple-iPhone-Pocket-and-ISSEY-MIYAKE-long-strap-colors_big.jpg.large.jpg"],
+    colors: ["فضة ألومنيوم", "أسود مطفي"],
+    description: "حماية أيقونية لجوالك بتصميم حقائب السفر الشهير من ريموفا، مصنوع من الألمنيوم والبوليكربونات.",
+    details: {
+      "المادة": "Aluminum & TPU",
+      "التوافق": "MagSafe Compatible",
+      "الصنع": "ألمانيا",
+      "التصميم": "Groove design المميز"
+    }
+  },
+  {
+    id: 29,
+    name: "كاميرا لايكا Leica Q3",
+    brand: "Leica",
+    price: "4,500 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/HYeFxOD.jpeg",
+    images: ["https://iservicejo.com/wp-content/uploads/2025/12/sw3Bp9m2iv8sB3keZC2CYRej9DEJguTn3GNjry9Q-600x450.webp",
+        "https://iservicejo.com/wp-content/uploads/2025/12/n7CXwpCcSsJfCNuqsulRAUlNxogyBfYnuT5Q3hne-600x450.webp",
+        "https://iservicejo.com/wp-content/uploads/2025/12/2oBGHDUQJRsuPQ00XzyVs01uXd9IfbkV6XIJlGdY-600x450.webp",
+        "https://iservicejo.com/wp-content/uploads/2025/12/563QPKMjM27ajMWGjFwemDMO4T1y5vyLGqCZghf3-600x450.webp"
+    ],
+    colors: ["أسود كلاسيكي"],
+    description: "جوهرة التصوير الألمانية، كاميرا مدمجة بإطار كامل (Full Frame) تقدم صوراً سينمائية لا تضاهى.",
+    details: {
+      "المستشعر": "60MP BSI CMOS Sensor",
+      "العدسة": "Summilux 28mm f/1.7 ASPH",
+      "الفيديو": "8K Video",
+      "الشاشة": "Tiltable Touchscreen",
+      "الاتصال": "Wi-Fi & Bluetooth للربط مع الأيفون"
+    }
+  },
+  {
+    id: 30,
+    name: "طائرة درون DJI Mavic 3 Pro Cine",
+    brand: "DJI",
+    price: "18,800 ريال",
+    category: "إكسسوارات",
+    image: "https://i.ebayimg.com/images/g/FQsAAOSwOyFnYCTU/s-l1600.webp",
+    images: ["https://i.ebayimg.com/images/g/FQsAAOSwOyFnYCTU/s-l1600.webp",
+        "https://i.ebayimg.com/images/g/LsUAAOSwybZnYB4F/s-l960.webp",
+        "https://i.ebayimg.com/images/g/rXcAAOSwzJlnYB3T/s-l960.webp",
+        "https://i.ebayimg.com/images/g/mYUAAOSwcAhnYB31/s-l960.webp",
+        "https://i.ebayimg.com/images/g/BCkAAOSwwpdnYB42/s-l960.webp"
+    ],
+    colors: ["رمادي"],
+    description: "استوديو طائر، أول درون في العالم بثلاث كاميرات بصرية ونظام Hasselblad للتصوير السينمائي.",
+    details: {
+      "الكاميرا": "4/3 CMOS Hasselblad + عدستين تيليفوتو",
+      "الفيديو": "Apple ProRes 422 HQ",
+      "وقت الطيران": "43 دقيقة",
+      "المدى": "15 كم نقل فيديو",
+      "التخزين": "1TB SSD مدمج"
+    }
+  },
+  {
+    id: 31,
+    name: "قلم أبل ",
+    brand: "Apple",
+    price: "699 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/t08V1Ju.jpeg",
+    images: ["https://iservicejo.com/wp-content/uploads/2024/09/MX2D3-600x600.jpeg",
+        "https://iservicejo.com/wp-content/uploads/2024/09/MX2D3_AV1-600x600.jpeg"
+    ],
+    colors: ["أبيض", "أسود"],
+    description: "قلم رقمي بملمس ورقي حقيقي، يدعم ألوان الطيف عبر مستشعر بصري في الرأس.",
+    details: {
+      "الميزات": "Squeeze gesture, Haptic feedback",
+      "الرأس": "قابل للتبديل (رسم/كتابة)",
+      "الشحن": "مغناطيسي",
+      "الجديد": "ميزة التقاط الألوان من العالم الواقعي"
+    }
+  },
+  {
+    id: 32,
+    name: "كيبورد ميكانيكي Angry Miao Cyberboard",
+    brand: "Angry Miao",
+    price: "3,200 ريال",
+    category: "إكسسوارات",
+    image: "https://i.ebayimg.com/thumbs/images/g/czcAAeSwTklpNFDR/s-l500.jpg",
+    images: ["https://i.ebayimg.com/thumbs/images/g/czcAAeSwTklpNFDR/s-l500.jpg",
+        "https://i.ebayimg.com/images/g/BYoAAeSwrxVpNFDR/s-l960.webp",
+        "https://i.ebayimg.com/images/g/sC0AAeSwPelpNFDR/s-l960.webp",
+        "https://i.ebayimg.com/images/g/cjAAAeSwrEdpNFDR/s-l960.webp"
+    ],
+    colors: ["أبيض سحابي", "أصفر نيون"],
+    description: "لوحة مفاتيح ميكانيكية بتصميم سايبر بانك، مع شاشة LED خلفية قابلة للبرمجة وهيكل ألمنيوم ثقيل.",
+    details: {
+      "النوع": "75% Gasket Mount",
+      "الشاشة": "200 LED Pixel Display",
+      "الاتصال": "Bluetooth 5.0 / Wired",
+      "الشحن": "شحن لاسلكي للكيبورد نفسه",
+      "الوزن": "2.5 كجم (ثقيل جداً)"
+    }
+  },
+  {
+    id: 33,
+    name: "ميكروفون شور Shure SM7B",
+    brand: "Shure",
+    price: "1,800 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/YXPxgA4.jpeg",
+    images: ["https://i.ebayimg.com/images/g/SQMAAOSwJI5ls-Os/s-l1600.webp",
+        "https://i.ebayimg.com/images/g/C0sAAOSwEe5ls-Os/s-l960.webp",
+        "https://i.ebayimg.com/images/g/x8QAAOSwk0Vls-Ot/s-l960.webp",
+        "https://i.ebayimg.com/images/g/wpYAAOSwh1tls-Os/s-l960.webp"
+    ],
+    colors: ["أسود"],
+    description: "الميكروفون الأسطوري المستخدم من قبل أكبر البودكاسترز والمغنين (مثل مايكل جاكسون)، جودة استوديو احترافية.",
+    details: {
+      "النوع": "Dynamic Vocal Microphone",
+      "النمط": "Cardioid",
+      "العزل": "عزل كهرومغناطيسي داخلي",
+      "الاستخدام": "البث، الغناء، التعليق الصوتي",
+      "المتطلبات": "يحتاج كرت صوت قوي (Audio Interface)"
+    }
+  },
+  {
+    id: 34,
+    name: "شاحن أنكر برايم 250 واط (Anker Prime)",
+    brand: "Anker",
+    price: "799 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/lj9hEhO.jpeg",
+    images: ["https://i.ebayimg.com/images/g/HvYAAOSwHSRoOgC6/s-l1600.webp",
+        "https://i.ebayimg.com/images/g/7GgAAOSwZkdoOgC7/s-l960.webp",
+        "https://i.ebayimg.com/images/g/HcQAAOSw-j9oOgC8/s-l960.webp",
+        "https://i.ebayimg.com/images/g/3FAAAOSwsjZoOgC8/s-l960.webp",
+        "https://i.ebayimg.com/images/g/M~sAAOSwMr1oOgC8/s-l960.webp"
+    ],
+    colors: ["أسود وذهبي"],
+    description: "بنك طاقة خارق بسعة 27,650 ملي أمبير وشاشة ذكية، يمكنه شحن ماك بوك وآيفون وآيباد في وقت واحد.",
+    details: {
+      "السعة": "27,650 mAh",
+      "القوة": "250W Total Output",
+      "الشاشة": "Smart Digital Display",
+      "التطبيق": "يدعم التحكم عبر التطبيق",
+      "المنافذ": "2x USB-C, 1x USB-A"
+    }
+  },
+  {
+    id: 35,
+    name: "حقيبة ظهر TUMI Navigation",
+    brand: "TUMI",
+    price: "2,450 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/3Kk3H5R.jpeg",
+    images: ["https://i.ebayimg.com/thumbs/images/g/B88AAeSwiPNowWjk/s-l500.jpg",
+        "https://i.ebayimg.com/images/g/BOwAAeSwMVVowWjk/s-l960.webp",
+        "https://i.ebayimg.com/images/g/8TIAAeSw7UlowWjk/s-l960.webp",
+        "https://i.ebayimg.com/images/g/BnQAAeSwizpowWjk/s-l960.webp",
+        "https://i.ebayimg.com/images/g/Cm0AAeSwdmpowWjk/s-l960.webp",
+        "https://i.ebayimg.com/images/g/ArwAAeSwe8FowWjk/s-l960.webp",
+        "https://i.ebayimg.com/images/g/EIMAAeSwEsVowWjk/s-l960.webp"
+    ],
+    colors: ["أسود باليستي"],
+    description: "حقيبة رجال الأعمال والتقنيين الأولى، نايلون باليستي مضاد للقطع وتصميم هندسي لتوزيع الوزن.",
+    details: {
+      "المادة": "FXT Ballistic Nylon",
+      "التخزين": "جيب مبطن للابتوب 15 بوصة",
+      "الميزات": "Add-a-Bag sleeve (تثبيت على الشنطة)",
+      "المعرف": "TUMI Tracer (رقم تتبع عالمي للحقيبة)",
+      "مقاومة": "مقاومة للماء والتآكل"
+    }
+  },
+  {
+    id: 36,
+    name: "كوب إمبر الذكي 2 (Ember Travel Mug)",
+    brand: "Ember",
+    price: "850 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/M2ZnDid.jpeg",
+    images: ["https://m.media-amazon.com/images/I/61VXH79P8sL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/71wqn9B9N8L._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/81uP-wuOkGL._AC_SL400_.jpg"
+    ],
+    colors: ["أسود"],
+    description: "كوب سفر ذكي يحفظ قهوتك عند درجة الحرارة التي تختارها بالضبط بالسلازيوس، تحكم باللمس أو التطبيق.",
+    details: {
+      "البطارية": "3 ساعات (أو طوال اليوم مع القاعدة)",
+      "السعة": "355 مل",
+      "التحكم": "شاشة لمس مخفية",
+      "الميزة": "Auto-sleep & wake",
+      "مقاومة الماء": "IPX7 (قابل للغسل)"
+    }
+  },
+  {
+    id: 37,
+    name: "الخاتم الذكي Oura Ring Gen 3 Horizon",
+    brand: "Oura",
+    price: "2,200 ريال",
+    category: "إكسسوارات",
+    image: "https://i.imgur.com/JJ942ks.jpeg",
+    images: ["https://i.ebayimg.com/images/g/joQAAOSwPKtmwFBv/s-l1600.webp",
+        "https://i.ebayimg.com/images/g/hgYAAOSwCUpmwEpA/s-l960.webp",
+        "https://i.ebayimg.com/images/g/Ue4AAOSw2UZmwEpE/s-l960.webp",
+        "https://i.ebayimg.com/images/g/qrAAAOSwsTpmwEpC/s-l960.webp",
+        "https://i.ebayimg.com/images/g/jgwAAOSwOYxmwEpA/s-l960.webp"
+    ],
+    colors: ["ذهبي", "ذهبي وردي", "تيتانيوم"],
+    description: "مختبر صحي كامل في إصبعك، يتتبع النوم والنشاط ونسبة الأكسجين بدقة طبية وتصميم مجوهرات فاخر.",
+    details: {
+      "المواد": "تيتانيوم خفيف الوزن",
+      "المستشعرات": "حرارة، نبض، أكسجين الدم",
+      "البطارية": "تصل 7 أيام",
+      "مقاومة الماء": "حتى 100 متر",
+      "الوزن": "4 إلى 6 جرام فقط"
+    }
+  },
+  {
+    id: 38,
+    name: "ثلاجة سامسونج BESPOKE AI Family Hub",
+    brand: "Samsung",
+    price: "15,999 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/XdJE8yT.jpeg",
+    images: ["https://images.samsung.com/is/image/samsung/p6pim/levant_ar/rf65db90b022lv/gallery/levant-ar-4-door-beverage-center-rf65db90b022lv-544888914?$Q90_1920_1280_F_PNG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/rf65db90b022lv/gallery/levant-ar-4-door-beverage-center-rf65db90b022lv-544888904?$Q90_2052_1641_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/rf65db90b022lv/gallery/levant-ar-4-door-beverage-center-rf65db90b022lv-544888897?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/rf65db90b022lv/gallery/levant-ar-4-door-beverage-center-rf65db90b022lv-544888898?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/rf65db90b022lv/gallery/levant-ar-4-door-beverage-center-rf65db90b022lv-544888899?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/rf65db90b022lv/gallery/levant-ar-4-door-beverage-center-rf65db90b022lv-544888900?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/rf65db90b022lv/gallery/levant-ar-4-door-beverage-center-rf65db90b022lv-544888901?$Q90_1368_1094_F_JPG$"
+    ],
+    colors: ["زجاج كحلي", "أبيض", "قابل للتخصيص"],
+    description: "أذكى ثلاجة في العالم مع شاشة 32 بوصة، كاميرا داخلية للتعرف على الطعام واقتراح وصفات بالذكاء الاصطناعي.",
+    details: {
+      "السعة": "825 لتر",
+      "الشاشة": "32 inch Full HD Touch",
+      "الميزة": "AI Vision Inside (تاريخ انتهاء الصلاحية)",
+      "الموزع": "مركز مشروبات Beverage Center مخفي",
+      "الثلج": "نوعين من الثلج (مكعبات وفتات)"
+    }
+  },
+  {
+    id: 39,
+    name: "غسالة ومجفف Samsung WashTower",
+    brand: "LG",
+    price: "11,500 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/d7Uhunp.jpeg",
+    images: ["https://images.samsung.com/is/image/samsung/p6pim/levant_ar/ww11b1944dgbfh/gallery/levant-ar-ww9400b-ww11b1944dgbfh-534419574?$Q90_1920_1280_F_PNG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/ww11b1944dgbfh/gallery/levant-ar-ww9400b-ww11b1944dgbfh-534419558?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/ww11b1944dgbfh/gallery/levant-ar-ww9400b-ww11b1944dgbfh-534419560?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/ww11b1944dgbfh/gallery/levant-ar-ww9400b-ww11b1944dgbfh-534419561?$Q90_1368_1094_F_JPG$",
+        "https://images.samsung.com/is/image/samsung/p6pim/levant_ar/ww11b1944dgbfh/gallery/levant-ar-ww9400b-ww11b1944dgbfh-534419553?$Q90_1368_1094_F_JPG$"
+    ],
+    colors: ["أخضر غابة", "بيج", "أسود معدني"],
+    description: "برج غسيل متكامل بقطعة واحدة، تحكم مركزي بالذكاء الاصطناعي يحدد دورة الغسيل والتجفيف المثالية للملابس.",
+    details: {
+      "السعة": "غسالة 21 كجم / مجفف 16 كجم",
+      "التقنية": "AI DD (تحديد نوع القماش)",
+      "البخار": "Steam+ للتعقيم",
+      "التصميم": "Center Control لوحة تحكم بالوسط",
+      "السرعة": "TurboWash 360 (غسيل في 39 دقيقة)"
+    }
+  },
+  {
+    id: 40,
+    name: "ماكينة قهوة لا مارزوكو لينيا ميني (La Marzocco)",
+    brand: "La Marzocco",
+    price: "23,000 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/icNsQWE.jpeg",
+    images: ["https://m.media-amazon.com/images/I/61AO0KI5dJL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/614zJKJXZ4L._AC_US750_.jpg",
+        "https://m.media-amazon.com/images/I/61IWy5qNDNL._AC_US750_.jpg",
+        "https://m.media-amazon.com/images/I/517dOKKFGQL._AC_US750_.jpg"
+    ],
+    colors: ["ستانلس ستيل", "أسود", "أبيض", "أحمر"],
+    description: "أيقونة المقاهي الإيطالية في منزلك، غلاية مزدوجة وتحكم حراري دقيق لصناعة اسبريسو لا يضاهى.",
+    details: {
+      "النظام": "Dual Boiler (غلاية قهوة + بخار)",
+      "المضخة": "Rotary Pump (هادئة وقوية)",
+      "التحكم": "PID Temperature Control",
+      "التطبيق": "Connected Machine (تحكم بالجوال)",
+      "الصنع": "يدوياً في فلورنسا، إيطاليا"
+    }
+  },
+  {
+    id: 41,
+    name: "محمصة سميج دولتشي آند غابانا (SMEG x D&G)",
+    brand: "Smeg",
+    price: "2,999 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/SofaSi4.jpeg",
+    images: ["https://m.media-amazon.com/images/I/51Mhz8zDVbL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/61qG68YDp0L._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/51VqjwCu5DL._AC_SL1000_.jpg",
+        "https://m.media-amazon.com/images/I/51IZL486D+L._AC_SL1000_.jpg"
+    ],
+    colors: ["رسومات صقلية ملونة"],
+    description: "ليست مجرد محمصة، بل قطعة فنية من مجموعة 'Sicily is my Love' بتصميم دار الأزياء العالمية.",
+    details: {
+      "الفتحات": "فتحتان عريضتان جداً",
+      "البرامج": "إعادة تسخين، إذابة، بيغل",
+      "المادة": "فولاذ مقاوم للصدأ مطلي",
+      "الصينية": "فتات قابلة للإزالة",
+      "القوة": "950 واط"
+    }
+  },
+  {
+    id: 42,
+    name: "روبوت التنظيف Roborock S8 MaxV Ultra",
+    brand: "Roborock",
+    price: "6,400 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/caYv5kk.jpeg",
+    images: ["https://icn.com/_next/image?url=https%3A%2F%2Fmedia.icn.com%2Fmedia%2Fstorage%2Fuploads%2Fall%2F68298d2e3a920.webp&w=828&q=75",
+        "https://icn.com/_next/image?url=https%3A%2F%2Fmedia.icn.com%2Fmedia%2Fstorage%2Fuploads%2Fall%2F68298d2f303f1.webp&w=828&q=75",
+        "https://icn.com/_next/image?url=https%3A%2F%2Fmedia.icn.com%2Fmedia%2Fstorage%2Fuploads%2Fall%2F68298d2feb9b4.webp&w=828&q=75"
+    ],
+    colors: ["أبيض", "أسود"],
+    description: "الروبوت الأذكى، يمتلك ذراعاً ميكانيكية للوصول للزوايا، يغسل الممسحة بماء ساخن ويجففها ذاتياً.",
+    details: {
+      "الشفط": "10,000 Pa (أقوى شفط)",
+      "التقنية": "DuoRoller Brush",
+      "الكاميرا": "RGB Camera + مكالمات فيديو",
+      "المساعد الصوتي": "مدمج (Hello Rocky)",
+      "القاعدة": "تفريغ الغبار، تعبئة الماء، غسل الممسحة"
+    }
+  },
+  {
+    id: 43,
+    name: "منقي الهواء دايسون بيج + كوايت (Big+Quiet)",
+    brand: "Dyson",
+    price: "4,299 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/gyvDr0C.jpeg",
+    images: ["https://jo-cell.com/cdn/shop/files/BP03_BNKGLDDKBL_primary_6d287e6c-3c74-4255-865a-46563c70c24e.webp?v=1746448656&width=600",
+        "https://jo-cell.com/cdn/shop/files/BP03_PDP_gallery_image_side_shot_f82c4271-7615-49c3-abfd-47bfba556237.webp?v=1746448660&width=600",
+        "https://jo-cell.com/cdn/shop/files/BP03_PDP_gallery_image_filter_replacement.webp?v=1746448665&width=600",
+        "https://jo-cell.com/cdn/shop/files/BP03_PDP_gallery_image_filtration_living_room.webp?v=1746448670&width=600",
+        "https://jo-cell.com/cdn/shop/files/BP03_PDP_gallery_image_filtration_on_black.webp?v=1746448675&width=600",
+        "https://jo-cell.com/cdn/shop/files/BP03_PDP_gallery_image_evening_family.webp?v=1746448684&width=600"
+    ],
+    colors: ["أزرق بروسي/نحاسي"],
+    description: "أقوى منقي هواء من دايسون للأماكن الكبيرة، هادئ جداً ويدمر الفورمالديهايد بشكل دائم.",
+    details: {
+      "التغطية": "تصل إلى 100 متر مربع",
+      "الفلاتر": "HEPA H13 (يدوم 5 سنوات)",
+      "المستشعرات": "CO2 sensor للتهوية",
+      "الضوضاء": "56 ديسيبل فقط (هادئ جداً)",
+      "التحكم": "تطبيق MyDyson"
+    }
+  },
+  {
+    id: 45,
+    name: "روبوت الطبخ ثيرمومكس Thermomix TM6",
+    brand: "Vorwerk",
+    price: "5,800 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/0G5H9lq.jpeg",
+    images: ["https://i.imgur.com/0G5H9lq.jpeg",
+        "https://m.media-amazon.com/images/I/71ZMX-fiEZL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/61861OjkapL._AC_US750_.jpg",
+        "https://m.media-amazon.com/images/I/71qDuWJzksL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/71ntZMjaW2L._AC_SL400_.jpg"
+    ],
+    colors: ["أبيض لامع", "أسود ماسي (إصدار محدود)"],
+    description: "أصغر وأذكى مطبخ في العالم، جهاز واحد يقوم بـ 20 وظيفة (طبخ، عجن، خلط، طهي بطيء) مع شاشة وصفات.",
+    details: {
+      "الشاشة": "6.8 inch Touchscreen",
+      "الوظائف": "Sous-vide, Fermentation, Slow Cook",
+      "المحرك": "Reluctance motor (بدون صيانة)",
+      "الاتصال": "Wi-Fi مع منصة Cookidoo",
+      "الميزان": "ميزان مدمج دقيق للجرام"
+    }
+  },
+  {
+    id: 46,
+    name: "فرن بيتزا أوني Ooni Karu 16",
+    brand: "Ooni",
+    price: "3,800 ريال",
+    category: "أجهزة منزلية",
+    image: "https://m.media-amazon.com/images/I/61BAE8-DrcL._AC_SL400_.jpg",
+    images: ["https://m.media-amazon.com/images/I/61BAE8-DrcL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/713J8aJAC0L._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/81S7tW03J6L._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/61D5qgo0kEL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/619rYgC7P3L._AC_SL400_.jpg"
+    ],
+    colors: ["فضي وأسود"],
+    description: "الفرن المنزلي الوحيد المعتمد من جمعية البيتزا النابولية الحقيقية، حرارة تصل لـ 500 درجة في 15 دقيقة.",
+    details: {
+      "الوقود": "متعدد (حطب، فحم، غاز)",
+      "الحرارة": "تصل 500°C (950°F)",
+      "الباب": "زجاجي مع تقنية ViewFlame",
+      "السرعة": "بيتزا ناضجة في 60 ثانية",
+      "ميزان حرارة": "رقمي مدمج"
+    }
+  },
+  {
+    id: 47,
+    name: "عجانة كيتشن إيد أرتيزان (نسخة النحاس)",
+    brand: "KitchenAid",
+    price: "4,100 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/0f9JX5Z.jpeg",
+    images: ["https://i.imgur.com/0f9JX5Z.jpeg"],
+    colors: ["نحاس مصقول (Satin Copper)"],
+    description: "أكثر من مجرد عجانة، قطعة ديكور فاخرة بهيكل معدني كامل باللون النحاسي النادر، قوية وصامتة.",
+    details: {
+      "السعة": "4.8 لتر + وعاء 3 لتر إضافي",
+      "القوة": "Direct Drive Motor",
+      "الملحقات": "مضرب، خطاف عجين، مخفقة (ستانلس)",
+      "السرعات": "10 سرعات دقيقة",
+      "الصنع": "الولايات المتحدة الأمريكية"
+    }
+  },
+  {
+    id: 48,
+    name: "ثلاجة مشروبات LG Signature",
+    brand: "LG",
+    price: "7,000 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/lGHAd0U.jpeg",
+    images: ["https://i.imgur.com/lGHAd0U.jpeg",
+        "https://m.media-amazon.com/images/I/81C6aJ7sQqL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/813hLAgaxYL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/818qbZ+gy0L._AC_SL400_.jpg"
+    ],
+    colors: ["فضي محكم"],
+    description: "قبو مشروبات ذكي، يفتح الباب صوتياً، وزجاج يتحول لشفاف عند طرقه مرتين (Knock-on).",
+    details: {
+      "السعة": "65 زجاجة",
+      "التحكم": "3 مناطق حرارة منفصلة",
+      "التقنية": "تحكم بالرطوبة والاهتزاز",
+      "الميزة": "Auto Open Door (حساس قدم)",
+      "الرفوف": "خشب الزان الطبيعي"
+    }
+  },
+  {
+    id: 49,
+    name: "ماكينة قهوة أوتوماتيك Jura Z10",
+    brand: "Jura",
+    price: "12,500 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/c8kjcFG.jpeg",
+    images: ["https://i.imgur.com/c8kjcFG.jpeg"
+    ],
+    colors: ["ألومنيوم داكن"],
+    description: "الأعجوبة السويسرية، أول ماكينة تصنع قهوة باردة (Cold Brew) وساخنة بضغطة زر وبطحنة تتعدل ذاتياً.",
+    details: {
+      "المطحنة": "Product Recognising Grinder (تتغير حسب المشروب)",
+      "الشاشة": "4.3 inch Touch",
+      "المشروبات": "32 نوع قهوة",
+      "التقنية": "Cold Extraction Process",
+      "التصميم": "واجهة ألومنيوم محدبة 3mm"
+    }
+  },
+  {
+    id: 50,
+    name: "فرن الشواء الداخلي Ninja Woodfire Pro",
+    brand: "Ninja",
+    price: "2,100 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/Dq4L1iq.jpeg",
+    images: ["https://i.imgur.com/Dq4L1iq.jpeg",
+        "https://i.ebayimg.com/images/g/w9oAAOSwxKFoUU64/s-l1600.webp",
+        "https://i.ebayimg.com/images/g/yNUAAOSwi8hoUU64/s-l960.webp"
+    ],
+    colors: ["رمادي وأحمر"],
+    description: "شواية كهربائية ذكية تمنحك طعم التدخين الحقيقي باستخدام حبيبات الخشب الطبيعية، بدون فوضى الفحم.",
+    details: {
+      "الوظائف": "7 وظائف (شوي، تدخين، قلي هوائي...)",
+      "الميزة": "Woodfire Technology (نكهة حطب حقيقية)",
+      "المقاومة": "مقاوم للماء للاستخدام الخارجي",
+      "الميزان": "مسبار حراري ذكي مدمج",
+      "السعة": "يكفي 8 برجر"
+    }
+  },
+  {
+    id: 51,
+    name: "محضرة طعام ماجيمكس Magimix Cook Expert",
+    brand: "Magimix",
+    price: "5,200 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/XLzKvea.jpeg",
+    images: ["https://i.imgur.com/XLzKvea.jpeg",
+        "https://i.ebayimg.com/images/g/sTcAAeSweN1os5JJ/s-l1600.webp"
+    ],
+    colors: ["كروم", "أحمر", "أسود"],
+    description: "المنافس الفرنسي القوي، وعاء ضخم يحافظ على الحرارة لساعتين، ومحرك بضمان 30 سنة.",
+    details: {
+      "الوعاء": "3.5 لتر Thermo Bowl",
+      "المحرك": "Professional induction motor",
+      "البرامج": "12 برنامج أوتوماتيكي",
+      "الملحقات": "قطاعات، مبشرات، سلة بخار",
+      "الضمان": "ضمان المحرك 30 عاماً"
+    }
+  },
+  {
+    id: 52,
+    name: "خلاط فيتاميكس Vitamix A3500i (Gold Label)",
+    brand: "Vitamix",
+    price: "3,900 ريال",
+    category: "أجهزة منزلية",
+    image: "https://i.imgur.com/3Nj9ITn.jpeg",
+    images: ["https://i.imgur.com/3Nj9ITn.jpeg",
+        "https://m.media-amazon.com/images/I/81lqHgsvweL._AC_SL400_.jpg",
+        "https://m.media-amazon.com/images/I/71CZBbqK10L._AC_SL400_.jpg",
+        ""
+    ],
+    colors: ["ذهبي نحاسي", "كحلي مطفي"],
+    description: "الخلاط الذي يستخدمه الطهاة المحترفون، إصدار ذهبي خاص، قوة تكسر الحجارة وشاشة لمس للتحكم.",
+    details: {
+      "القوة": "2.2 حصان",
+      "البرامج": "5 برامج (سموثي، شوربة ساخنة، مثلجات...)",
+      "الميزة": "Self-Detect (يعرف حجم الوعاء)",
+      "التنظيف": "دورة تنظيف ذاتي",
+      "الضمان": "10 سنوات"
+    }
+  }
+        ];
+
+        const categories = [
+            { name: "لابتوبات", icon: "fa-laptop" },
+            { name: "جوالات", icon: "fa-mobile-alt" },
+            { name: "كونسول", icon: "fa-gamepad" },
+            { name: "بي سي", icon: "fa-desktop" },
+            { name: "شاشات", icon: "fa-tv" },
+            { name: "إكسسوارات", icon: "fa-headphones" },
+            { name: "أجهزة منزلية", icon: "fa-blender" },
+            { name: "ذكاء اصطناعي", icon: "fa-robot" }
+        ];
+
+        // --- إدارة الحالة (State Management) ---
+        let cart = JSON.parse(localStorage.getItem('tamimiCart')) || [];
+        
+        function updateCartCount() {
+            const total = cart.reduce((acc, item) => acc + item.quantity, 0);
+            document.querySelectorAll('.cart-count').forEach(el => el.textContent = total);
+            localStorage.setItem('tamimiCart', JSON.stringify(cart));
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id == productId);
+            if (product) {
+                const existing = cart.find(item => item.id == productId);
+                if (existing) {
+                    existing.quantity++;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                updateCartCount();
+                // يمكن إضافة إشعار Toast هنا بدلاً من Alert
+            }
+        }
+
+        // --- دوال صفحة السلة المدمجة (من sk.html) ---
+        function renderCartPage() {
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartItemsCount = document.getElementById('cart-items-count');
+            
+            // تحديث عدد العناصر
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartItemsCount.textContent = totalItems;
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h2 class="empty-cart-title">سلة التسوق فارغة</h2>
+                        <button class="btn-primary" onclick="backToMain()">تسوق الآن</button>
+                    </div>
+                `;
+            } else {
+                cartItemsContainer.innerHTML = '';
+                cart.forEach(item => {
+                    const priceVal = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+                    const totalVal = priceVal * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">${item.name}</h3>
+                            <p class="cart-item-price">${item.price}</p>
+                            <div class="cart-item-actions">
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="changeQuantity(${item.id}, -1)">-</button>
+                                    <input type="number" class="quantity-input" value="${item.quantity}" readonly>
+                                    <button class="quantity-btn" onclick="changeQuantity(${item.id}, 1)">+</button>
+                                </div>
+                                <div class="remove-item" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i> حذف</div>
+                            </div>
+                        </div>
+                        <div class="cart-item-total">
+                            <p class="item-total-price">${totalVal.toLocaleString()} ريال</p>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
+            }
+            updateOrderSummary();
+        }
+
+        function changeQuantity(id, change) {
+            const item = cart.find(i => i.id == id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity < 1) item.quantity = 1;
+                updateCartCount();
+                renderCartPage();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id != id);
+            updateCartCount();
+            renderCartPage();
+        }
+
+        function updateOrderSummary() {
+            let subtotal = 0;
+            cart.forEach(item => {
+                const priceVal = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+                subtotal += priceVal * item.quantity;
+            });
+            
+            const tax = subtotal * 0.15;
+            const total = subtotal + tax;
+            
+            document.getElementById('subtotal').textContent = subtotal.toLocaleString() + ' ريال';
+            document.getElementById('tax').textContent = tax.toLocaleString() + ' ريال';
+            document.getElementById('total').textContent = total.toLocaleString() + ' ريال';
+        }
+
+        // --- العرض (Rendering) ---
+        
+        function renderCategories() {
+            const container = document.getElementById('categories-container');
+            container.innerHTML = categories.map(cat => `
+                <div class="category-item" onclick="filterByCategory('${cat.name}', this)">
+                    <div class="category-icon-box"><i class="fas ${cat.icon}"></i></div>
+                    <span>${cat.name}</span>
+                </div>
+            `).join('');
+            
+            // إضافة زر "الكل"
+             container.innerHTML = `
+                <div class="category-item active" onclick="filterByCategory('all', this)">
+                    <div class="category-icon-box"><i class="fas fa-th-large"></i></div>
+                    <span>الكل</span>
+                </div>
+             ` + container.innerHTML;
+        }
+
+        function renderProducts(list) {
+            const container = document.getElementById('products-grid');
+            if(list.length === 0) {
+                container.innerHTML = '<p style="text-align:center; width:100%; grid-column: 1/-1;">لا توجد منتجات مطابقة للبحث.</p>';
+                return;
+            }
+            container.innerHTML = list.map(product => `
+                <div class="product-card" data-id="${product.id}">
+                    <img src="${product.image}" class="product-image" alt="${product.name}">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">${product.price}</p>
+                        <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(${product.id})">أضف للسلة</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    showProductDetail(this.dataset.id);
+                });
+            });
+        }
+
+        // --- التصفية والبحث ---
+        function filterByCategory(categoryName, element) {
+            document.querySelectorAll('.category-item').forEach(el => el.classList.remove('active'));
+            if(element) element.classList.add('active');
+
+            if (categoryName === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === categoryName);
+                renderProducts(filtered);
+            }
+        }
+
+        document.getElementById('search-btn').addEventListener('click', () => {
+            const searchContainer = document.getElementById('search-container');
+            if (searchContainer.style.display === 'block') {
+                searchContainer.style.display = 'none';
+            } else {
+                searchContainer.style.display = 'block';
+                document.getElementById('search-input').focus();
+            }
+        });
+
+        document.getElementById('search-input').addEventListener('input', function() {
+            const term = this.value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(term));
+            renderProducts(filtered);
+            if(term.length > 0) {
+                document.getElementById('products-section').scrollIntoView({behavior: 'smooth'});
+            }
+        });
+
+        // --- التحكم في الصفحات (SPA Navigation) ---
+        function showProductDetail(id) {
+            const product = products.find(p => p.id == id);
+            if (!product) return;
+
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('cart-page-view').style.display = 'none';
+            document.getElementById('product-detail-view').style.display = 'block';
+
+            const thumbnails = product.images.map((img, idx) => `
+                <img src="${img}" class="thumb-img ${idx === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', this)">
+            `).join('');
+
+            let detailsHtml = '';
+            if (product.details) {
+                detailsHtml = `<table class="product-table"><tbody>
+                    ${Object.entries(product.details).map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('')}
+                </tbody></table>`;
+            }
+
+            const content = document.getElementById('product-details-content');
+            content.innerHTML = `
+                <div class="main-image-container">
+                    <img src="${product.images[0]}" id="main-detail-img" alt="${product.name}">
+                    <div class="thumbnails-container">${thumbnails}</div>
+                </div>
+                <div class="detail-info">
+                    <h2>${product.name}</h2>
+                    <p class="detail-price">${product.price}</p>
+                    <p class="detail-description">${product.description}</p>
+                    <button class="btn-primary" style="width:100%; margin-top:20px;" onclick="addToCart(${product.id})">أضف للسلة</button>
+                    ${detailsHtml}
+                </div>
+            `;
+            window.scrollTo(0, 0);
+        }
+
+        window.changeMainImage = function(src, el) {
+            document.getElementById('main-detail-img').src = src;
+            document.querySelectorAll('.thumb-img').forEach(img => img.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        window.backToMain = function() {
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('product-detail-view').style.display = 'none';
+            document.getElementById('cart-page-view').style.display = 'none';
+            document.getElementById('products-grid').scrollIntoView({behavior: 'smooth'});
+        }
+
+        window.showSection = function(section) {
+            // إخفاء جميع الأقسام أولاً
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('product-detail-view').style.display = 'none';
+            document.getElementById('cart-page-view').style.display = 'none';
+
+            if (section === 'home') {
+                document.getElementById('main-content').style.display = 'block';
+                window.scrollTo(0,0);
+            } else if (section === 'cart') {
+                document.getElementById('cart-page-view').style.display = 'block';
+                renderCartPage(); // تحديث محتوى السلة عند الفتح
+                window.scrollTo(0,0);
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        }
+
+        document.querySelector('.hamburger').addEventListener('click', toggleMenu);
+        document.querySelector('.close-menu').addEventListener('click', toggleMenu);
+
+        // --- التهيئة (Init) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderProducts(products);
+            updateCartCount();
+        });
+
+        function goToCheckout() {
+            if (cart.length === 0) {
+                alert("سلة التسوق فارغة! الرجاء إضافة منتجات قبل إتمام الشراء.");
+                return;
+            }
+            // حفظ السلة لضمان انتقال البيانات
+            localStorage.setItem('tamimiCart', JSON.stringify(cart));
+            // الانتقال لصفحة الدفع
+            window.location.href = 'pay.html';
+        }
+    </script>
+
+</body>
+</html>

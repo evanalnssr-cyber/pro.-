@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الطلب | شركة عمر التميمي وإخوانه</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #0A192F; 
+            --accent-color: #D4AF37;
+            --text-gold: #e2c275;
+            --light-text: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(212, 175, 55, 0.2);
+            --transition: all 0.3s ease;
+            --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.15);
+            --success-color: #4CAF50;
+            --dark-bg: #050C16;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Alexandria', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            background-image: linear-gradient(rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.95)),
+                              url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            color: var(--light-text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .thank-you-container {
+            width: 100%;
+            max-width: 650px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow-glow);
+            backdrop-filter: blur(10px);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-color), var(--text-gold));
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 25px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .order-id {
+            color: var(--text-gold);
+            font-weight: 500;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .order-details-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: right;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .detail-item strong {
+            color: var(--text-gold);
+            font-weight: 500;
+        }
+
+        .detail-item span {
+            color: #ccc;
+        }
+
+        .product-summary-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .total-price-row {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .shop-now-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #D4AF37 0%, #e2c275 100%);
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .shop-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .error-message {
+            color: #ff4757;
+            padding: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .thank-you-container {
+                padding: 25px 15px;
+            }
+            h1 { font-size: 1.5rem; }
+            .detail-item { flex-direction: column; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="thank-you-container" id="thank-you-container">
+        <div class="loading">جاري تحميل تفاصيل الطلب...</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const thankYouContainer = document.getElementById('thank-you-container');
+            
+            // جلب البيانات من localStorage (المحفوظة من صفحة upay.html)
+            const rawData = localStorage.getItem('orderDetailsForConfirmation');
+            
+            if (!rawData) {
+                thankYouContainer.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-circle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h2>عذراً، لم نتمكن من العثور على بيانات الطلب</h2>
+                        <p style="margin: 15px 0;">قد تكون الجلسة قد انتهت أو تم تأكيد الطلب مسبقاً.</p>
+                        <a href="index.html" class="shop-now-btn">العودة للرئيسية</a>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const orderData = JSON.parse(rawData);
+                const { customer, shippingAddress, summary, items, paymentMethod } = orderData;
+                
+                // توليد رقم طلب عشوائي
+                const orderNumber = "TM-" + Math.floor(100000 + Math.random() * 900000);
+
+                // معالجة عرض المنتجات
+                let productsHTML = '<div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">';
+                productsHTML += '<p style="color: var(--text-gold); margin-bottom: 10px; font-weight: bold;">المنتجات المطلوبة:</p>';
+                
+                items.forEach(item => {
+                    productsHTML += `
+                        <div class="product-summary-item">
+                            <span>${item.name} (x${item.quantity || 1})</span>
+                            <span>${parseFloat(item.price).toFixed(2)} ر.س</span>
+                        </div>
+                    `;
+                });
+                productsHTML += '</div>';
+
+                // بناء الصفحة
+                thankYouContainer.innerHTML = `
+                    <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h1>شكراً لثقتكم بنا!</h1>
+                    <span class="order-id">رقم الطلب: ${orderNumber}</span>
+                    <p style="margin-bottom: 25px; color: #aaa;">تم استلام طلبك بنجاح، وسنتواصل معك قريباً لتأكيد الشحن.</p>
+                    
+                    <div class="order-details-card">
+                        <div class="detail-item">
+                            <strong>الاسم الكامل:</strong>
+                            <span>${customer.firstName} ${customer.lastName}</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>رقم الهاتف:</strong>
+                            <span dir="ltr">${customer.phone}</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>عنوان الشحن:</strong>
+                            <span>${shippingAddress.city}، ${shippingAddress.address}</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>طريقة الدفع:</strong>
+                            <span>${paymentMethod === 'cash-on-delivery' ? 'الدفع عند الاستلام' : paymentMethod}</span>
+                        </div>
+                        
+                        ${productsHTML}
+                        
+                        <div class="total-price-row">
+                            <span>المجموع الإجمالي</span>
+                            <span>${orderData.orderSummary.total}</span>
+                        </div>
+                    </div>
+
+                    <a href="index.html" class="shop-now-btn">
+                        <i class="fas fa-shopping-bag"></i> العودة للمتجر
+                    </a>
+                `;
+
+                // مسح البيانات لضمان عدم تكرار العرض عند تحديث الصفحة (اختياري حسب الرغبة)
+                // localStorage.removeItem('orderDetailsForConfirmation');
+
+            } catch (error) {
+                console.error("خطأ في تحليل بيانات الطلب:", error);
+                thankYouContainer.innerHTML = `
+                    <div class="error-message">
+                        <h2>حدث خطأ أثناء عرض تفاصيل الطلب</h2>
+                        <a href="index.html" class="shop-now-btn">العودة للرئيسية</a>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
